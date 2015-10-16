@@ -125,9 +125,20 @@ public class frmhabitacion extends javax.swing.JFrame {
 
         jLabel1.setText("Número");
 
+        txtnumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnumeroActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Piso");
 
         cbopiso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        cbopiso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbopisoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descripción");
 
@@ -152,6 +163,11 @@ public class frmhabitacion extends javax.swing.JFrame {
         jLabel6.setText("Estado");
 
         cboestado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", "Mantenimiento" }));
+        cboestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboestadoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Tipo Habitación");
 
@@ -284,6 +300,11 @@ public class frmhabitacion extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablalistadoMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablalistado);
 
         jLabel8.setText("Buscar");
@@ -291,6 +312,11 @@ public class frmhabitacion extends javax.swing.JFrame {
         btnbuscar.setBackground(new java.awt.Color(102, 51, 255));
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar-la-aplicacion-de-busqueda-x-icono-9699-32.png"))); // NOI18N
         btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
 
         btneliminar.setBackground(new java.awt.Color(102, 51, 255));
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/tar-icono-9842-32.png"))); // NOI18N
@@ -387,6 +413,8 @@ public class frmhabitacion extends javax.swing.JFrame {
 
     private void txtprecio_diarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecio_diarioActionPerformed
 
+        txtprecio_diario.transferFocus();
+        
     }//GEN-LAST:event_txtprecio_diarioActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -474,10 +502,52 @@ public class frmhabitacion extends javax.swing.JFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         
         if (!txtidhabitacion.getText().equals("")) {
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "")
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro De Eliminar La Habitacion?","confirmar",2);
+            
+            if (confirmacion==0) {
+                fhabitacion func = new fhabitacion();
+                vhabitacion dts = new vhabitacion();
+                
+                dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
+                func.eliminar(dts);
+                mostrar("");
+                inhabilitar();
+                
+                
+            }
             
         }
     }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        
+        mostrar(txtbuscar.getText());
+        
+    }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
+        
+        txtnumero.transferFocus();
+        
+    }//GEN-LAST:event_txtnumeroActionPerformed
+
+    private void cbopisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbopisoActionPerformed
+        
+        cbopiso.transferFocus();
+        
+    }//GEN-LAST:event_cbopisoActionPerformed
+
+    private void cboestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboestadoActionPerformed
+        
+        cboestado.transferFocus();
+        
+    }//GEN-LAST:event_cboestadoActionPerformed
+
+    private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
+        
+        
+        
+    }//GEN-LAST:event_tablalistadoMouseClicked
 
     /**
      * @param args the command line arguments
