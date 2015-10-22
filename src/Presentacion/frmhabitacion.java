@@ -5,10 +5,12 @@ import Logica.fhabitacion;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class frmhabitacion extends javax.swing.JFrame {
+public class frmhabitacion extends javax.swing.JInternalFrame {
 
     public frmhabitacion() {
         initComponents();
+        mostrar("");
+        inhabilitar();
     }
 
     private String accion = "guardar";
@@ -330,6 +332,11 @@ public class frmhabitacion extends javax.swing.JFrame {
         btnsalir.setBackground(new java.awt.Color(102, 51, 255));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir-de-gnome-icono-8179-32.png"))); // NOI18N
         btnsalir.setText("Salir");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
 
         lbltotalregistros.setBackground(new java.awt.Color(102, 51, 255));
         lbltotalregistros.setText("Registro");
@@ -358,7 +365,7 @@ public class frmhabitacion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros)
-                .addGap(20, 20, 20))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +381,7 @@ public class frmhabitacion extends javax.swing.JFrame {
                     .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(lbltotalregistros)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -480,7 +487,7 @@ public class frmhabitacion extends javax.swing.JFrame {
             if (func.insertar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La Habitacion Fue Registrada Satisfactoriamente");
                 mostrar("");
-                
+                inhabilitar();
             }
             
             
@@ -491,6 +498,7 @@ public class frmhabitacion extends javax.swing.JFrame {
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La Habitacion Fue Editada Satisfactoriamente");
                 mostrar("");
+                inhabilitar();
                 
             }
                     
@@ -545,9 +553,28 @@ public class frmhabitacion extends javax.swing.JFrame {
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         
+        btnguardar.setText("Editar");
+        habilitar();
+        btneliminar.setEnabled(true); 
+        accion="Editar";
         
+        int fila = tablalistado.rowAtPoint(evt.getPoint());
+        txtidhabitacion.setText(tablalistado.getValueAt(fila, 0).toString());
+        txtnumero.setText(tablalistado.getValueAt(fila, 1).toString());
+        cbopiso.setSelectedItem(tablalistado.getValueAt(fila, 2).toString());
+        txtdescripcion.setText(tablalistado.getValueAt(fila, 3).toString());
+        txtcaracteristicas.setText(tablalistado.getValueAt(fila, 4).toString());
+        txtprecio_diario.setText(tablalistado.getValueAt(fila, 5).toString());
+        cboestado.setSelectedItem(tablalistado.getValueAt(fila, 6).toString());
+        cbotipo_habitacion.setSelectedItem(tablalistado.getValueAt(fila, 7).toString());
         
     }//GEN-LAST:event_tablalistadoMouseClicked
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_btnsalirActionPerformed
 
     /**
      * @param args the command line arguments
