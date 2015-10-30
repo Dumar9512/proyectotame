@@ -28,7 +28,7 @@ public class fproducto {
         
         totalregistros=0;
         modelo = new DefaultTableModel(null,titulos);
-        sSQL = "select * producto where nombre like '&" + buscar + "&' order by idproducto desc";
+        sSQL = "select * from producto where nombre like '&" + buscar + "&' order by idproducto desc";
         
         try {
             java.sql.Statement st=cn.createStatement();

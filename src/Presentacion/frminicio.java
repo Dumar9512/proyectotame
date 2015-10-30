@@ -25,6 +25,11 @@ public class frminicio extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        lblidpersona = new javax.swing.JLabel();
+        lblnombre = new javax.swing.JLabel();
+        lblapaterno = new javax.swing.JLabel();
+        lblamaterno = new javax.swing.JLabel();
+        lblacceso = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnusisreserva = new javax.swing.JMenu();
         mnuarchivo = new javax.swing.JMenu();
@@ -46,6 +51,31 @@ public class frminicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         escritorio.setBackground(new java.awt.Color(102, 0, 204));
+
+        lblidpersona.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblidpersona.setText("jLabel1");
+        escritorio.add(lblidpersona);
+        lblidpersona.setBounds(20, 30, 110, 14);
+
+        lblnombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblnombre.setText("jLabel2");
+        escritorio.add(lblnombre);
+        lblnombre.setBounds(20, 70, 110, 14);
+
+        lblapaterno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblapaterno.setText("jLabel3");
+        escritorio.add(lblapaterno);
+        lblapaterno.setBounds(20, 100, 110, 14);
+
+        lblamaterno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblamaterno.setText("jLabel4");
+        escritorio.add(lblamaterno);
+        lblamaterno.setBounds(20, 130, 110, 14);
+
+        lblacceso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblacceso.setText("jLabel5");
+        escritorio.add(lblacceso);
+        lblacceso.setBounds(20, 160, 110, 14);
 
         mnusisreserva.setMnemonic('f');
         mnusisreserva.setText("Sisreserva");
@@ -82,6 +112,11 @@ public class frminicio extends javax.swing.JFrame {
         contentMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Reservas y Consumos");
+        contentMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItemActionPerformed(evt);
+            }
+        });
         mnureservas.add(contentMenuItem);
 
         aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -146,7 +181,8 @@ public class frminicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -201,6 +237,21 @@ public class frminicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnusalirMouseClicked
 
+    private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
+        
+        frmreserva form = new frmreserva();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        
+        frmreserva.txtidtrabajador.setText(lblidpersona.getText());
+        frmreserva.txttrabajador.setText(lblnombre.getText() + " " + lblapaterno.getText());
+        frmreserva.idusuario=Integer.parseInt(lblidpersona.getText());
+        
+        
+        
+    }//GEN-LAST:event_contentMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,15 +292,20 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    public static javax.swing.JLabel lblacceso;
+    public static javax.swing.JLabel lblamaterno;
+    public static javax.swing.JLabel lblapaterno;
+    public static javax.swing.JLabel lblidpersona;
+    public static javax.swing.JLabel lblnombre;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu mnuarchivo;
+    public static javax.swing.JMenu mnuarchivo;
     private javax.swing.JMenu mnuayuda;
-    private javax.swing.JMenu mnuconfiguraciones;
+    public static javax.swing.JMenu mnuconfiguraciones;
     private javax.swing.JMenu mnuconsultas;
     private javax.swing.JMenu mnuherramientas;
     private javax.swing.JMenu mnureservas;

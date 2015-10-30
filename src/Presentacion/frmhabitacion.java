@@ -433,75 +433,63 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
-        if (txtnumero.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar Un Numero De Habitacion");
-            txtnumero.requestFocus();
-
-            return;
-
+        if (txtnumero.getText().length()== 0 ){
+        
+        JOptionPane.showConfirmDialog(rootPane,"debes ingresar un Numero de Habitacion");
+        txtnumero.requestFocus();
+        return;
         }
-        if (txtdescripcion.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar Una Descripcion Para La Habitacion");
-            txtdescripcion.requestFocus();
-
-            return;
-
+        if (txtdescripcion.getText().length()== 0 ){
+        
+        JOptionPane.showConfirmDialog(rootPane,"debes ingresar una descripcion para la habitacion");
+        txtdescripcion.requestFocus();
+        return;
         }
-
-        if (txtprecio_diario.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar Un Precio Diario Para La Habitacion");
-            txtprecio_diario.requestFocus();
-
-            return;
-
+        if (txtprecio_diario.getText().length()== 0 ){
+        
+        JOptionPane.showConfirmDialog(rootPane,"debes ingrese un precio diario para la habitacion");
+        txtprecio_diario.requestFocus();
+        return;
         }
-
-        if (txtcaracteristicas.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar Una Caracteristica Para La Habitacion");
-            txtcaracteristicas.requestFocus();
-
-            return;
-
+        if (txtcaracteristicas.getText().length()== 0 ){
+        
+        JOptionPane.showConfirmDialog(rootPane,"debes ingresar una caracteristica para la habitacion");
+        txtcaracteristicas.requestFocus();
+        return;
         }
-        vhabitacion dts = new vhabitacion();
-        fhabitacion func = new fhabitacion();
-
-        dts.setNumero(txtnumero.getText());
-
-        int seleccionado = cbopiso.getSelectedIndex();
-        dts.setPiso((String) cbopiso.getItemAt(seleccionado));
+        vhabitacion dts=new vhabitacion();
+        fhabitacion func=new fhabitacion();
         
-        dts.setDescripcion(txtdescripcion.getText());
-        dts.setCaracteristicas(txtcaracteristicas.getText());
+    dts.setNumero(txtnumero.getText());
+    
+    int seleccionado = cbopiso.getSelectedIndex();
+    dts.setPiso((String) cbopiso.getItemAt(seleccionado));
         
-        dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
-        
-        seleccionado = cboestado.getSelectedIndex();
-        dts.setEstado((String) cboestado.getItemAt(seleccionado));
-        
-        seleccionado = cbotipo_habitacion.getSelectedIndex();
-        dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
-        
-        
+    dts.setDescripcion(txtdescripcion.getText());
+    dts.setCaracteristicas(txtcaracteristicas.getText());
+    dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
+    
+     seleccionado = cboestado.getSelectedIndex();
+     dts.setEstado((String) cboestado.getItemAt(seleccionado));
+     seleccionado = cbotipo_habitacion.getSelectedIndex();
+     dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
+    
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "La Habitacion Fue Registrada Satisfactoriamente");
-                mostrar("");
-                inhabilitar();
-            }
-            
-            
-        }
-        else if (accion.equals("editar")){
-            dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
-            
-            if (func.editar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "La Habitacion Fue Editada Satisfactoriamente");
-                mostrar("");
+                JOptionPane.showMessageDialog(rootPane,"la habitacion fue registrada correctamente");
+                mostrar ("");
                 inhabilitar();
                 
             }
-                    
+        }else if (accion.equals("editar")){
+        
+        dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
+        
+            if (func.editar(dts)) {
+                JOptionPane.showMessageDialog(rootPane,"la habitacion fue Editada correctamente");
+                mostrar ("");
+                inhabilitar();
+            }
         }
 
 
