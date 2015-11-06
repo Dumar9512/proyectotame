@@ -20,7 +20,7 @@ public class fcliente {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "Nombre", "Apaterno", "Amaterno", "Doc", "Numero Documento", "Dirección", "Telefono", "Email", "código"};
+        String[] titulos = {"ID", "Nombre", "Apaterno", "Amaterno", "Doc", "Num_Documento", "Dirección", "Telefono", "Email", "código"};
 
         String[] registro = new String[10];
 
@@ -28,8 +28,8 @@ public class fcliente {
         modelo = new DefaultTableModel(null, titulos);
         sSQL = "select p.idpersona,p.nombre,p.apaterno,p.amaterno,p.tipo_documento,p.num_documento,"
                 + "p.direccion,p.telefono,p.email,c.codigo_cliente from persona p inner join cliente c "
-                + "on p.idpersona=c.idpersona where num_documento like '&"
-                + buscar + "&' order by idpersona desc";
+                + "on p.idpersona=c.idpersona where num_documento like '%"
+                + buscar + "%' order by idpersona desc";
 
         try {
             java.sql.Statement st = cn.createStatement();

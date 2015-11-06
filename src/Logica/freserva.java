@@ -36,7 +36,7 @@ public class freserva {
                 "r.idtrabajador,(select nombre from persona where idpersona=r.idtrabajador)as trabajadorn, " + 
                 "(select apaterno from persona where idpersona=r.idtrabajador)as trabajadorap," + 
                 "r.tipo_reserva,r.fecha_reserva,r.fecha_ingresa,r.fecha_salida," + 
-                "r.costo_alojamiento,r.estado from reserva r inner join habitacion h on r.idhabitacion=h.idhabitacion where r.fecha_reserva like '&" + buscar + "&' order by idreserva desc";
+                "r.costo_alojamiento,r.estado from reserva r inner join habitacion h on r.idhabitacion=h.idhabitacion where r.fecha_reserva like '%" + buscar + "%' order by idreserva desc";
         
         try {
             java.sql.Statement st=cn.createStatement();
@@ -141,6 +141,33 @@ public class freserva {
             return false;
         }
     }
+    
+    public boolean pagar (vreserva dts){
+         sSQL=" update reserva set estado='Pagada'"+
+          " where idreserva=?";       
+         //alt + 39
+                 
+          try {
+              PreparedStatement pst=cn.prepareStatement(sSQL); 
+             
+             
+             pst.setInt( 1, dts.getIdreserva());
+              
+             int n=pst.executeUpdate();
+             if (n!=0){
+                 return true;
+               } 
+             else{
+                 return false;
+             }
+         } catch (Exception e) {
+             JOptionPane.showConfirmDialog(null, e);
+            return false;
+         }
+     }
+    
+    
+    
     
     
     

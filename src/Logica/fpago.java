@@ -2,6 +2,7 @@
 package Logica;
 
 import Datos.vhabitacion;
+import Datos.vpago;
 import Datos.vproducto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,12 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class fproducto {
+public class fpago {
     
      private conexion mysql = new conexion();
     private Connection cn=mysql.conectar();
     private String sSQL="";
     public Integer totalregistros;
+    
+    public Double totalconsumo;
     
     
     public DefaultTableModel mostrar(String buscar){
@@ -140,6 +143,18 @@ public class fproducto {
             JOptionPane.showConfirmDialog(null, e);
             return false;
         }
+    }
+
+    public boolean insertar(vpago dts) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean editar(vpago dts) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void eliminar(vpago dts) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -27,7 +27,7 @@ public class fhabitacion {
         
         totalregistros=0;
         modelo = new DefaultTableModel(null,titulos);
-        sSQL = "select * from habitacion where piso like '&" + buscar + "&' order by idhabitacion";
+        sSQL = "select * from habitacion where piso like '%" + buscar + "%' order by idhabitacion";
         
         try {
             java.sql.Statement st=cn.createStatement();
@@ -69,7 +69,7 @@ public class fhabitacion {
         
         totalregistros=0;
         modelo = new DefaultTableModel(null,titulos);
-        sSQL = "select * from habitacion where piso like '&" + buscar + "&' and estado='Disponnible'  order by idhabitacion";
+        sSQL = "select * from habitacion where piso like '%" + buscar + "%' and estado='Disponnible'  order by idhabitacion";
         
         try {
             java.sql.Statement st=cn.createStatement();
@@ -106,7 +106,7 @@ public class fhabitacion {
     
     
     public boolean insertar (vhabitacion dts){
-        sSQL= "insert into habitacion (numero,piso,descripion,caracteristicas,precio_diario,estado,tipo_habitacion)" +
+        sSQL= "insert into habitacion (numero,piso,descripcion,caracteristicas,precio_diario,estado,tipo_habitacion)" +
                     "values (?,?,?,?,?,?,?)";
 
         try {
@@ -169,6 +169,64 @@ public class fhabitacion {
             return false;
         }
     }
+    
+    
+    public boolean desocupar (vhabitacion dts){
+        
+        sSQL=" update habitacion set estado='Disponible'"+
+          " where idhabitacion=?";      
+         
+         //alt + 39
+                 
+          try {
+              PreparedStatement pst=cn.prepareStatement(sSQL); 
+            
+             
+             pst.setInt( 1, dts.getIdhabitacion());
+              
+             int n=pst.executeUpdate();
+             if (n!=0){
+                 return true;
+               } 
+             else{
+                 return false;
+             }
+         } catch (Exception e) {
+             JOptionPane.showConfirmDialog(null, e);
+            return false;
+         }
+          
+    }
+    
+    
+    
+    
+    
+    public boolean ocupar (vhabitacion dts){
+         sSQL=" update habitacion set estado='Ocupado'"+
+          " where idhabitacion=?";      
+         
+         //alt + 39
+                 
+          try {
+              PreparedStatement pst=cn.prepareStatement(sSQL); 
+            
+             
+             pst.setInt( 1, dts.getIdhabitacion());
+              
+             int n=pst.executeUpdate();
+             if (n!=0){
+                 return true;
+               } 
+             else{
+                 return false;
+             }
+         } catch (Exception e) {
+             JOptionPane.showConfirmDialog(null, e);
+            return false;
+         }
+   
+     }
     
     
     
